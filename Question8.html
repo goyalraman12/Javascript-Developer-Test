@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Question 8</title>
+		<script >
+			var obj = [
+				{"ID" : 4, "Name" : "abc"},
+				{"ID" : 10, "Name" : "ab2"},
+				{"ID" : 5, "Name" : "abc3"},
+				{"ID" : 6, "Name" : "abc5"}
+			]
+			
+      // Before Sorting
+      document.write("<b>Before Sorting </b><br/>");         
+      for (var n = 0; n < obj.length; n++) {
+            document.write(obj[n].ID + ' ' + obj[n].Name + '<br>');
+      }
+
+    // ascending order
+    function SortByID(x,y) {
+      return x.ID - y.ID; 
+    }
+
+
+    function SortByName(x,y) {
+      return ((x.Name == y.Name) ? 0 : ((x.Name > y.Name) ? 1 : -1 ));
+    }
+
+    // Call Sort By Name
+    obj.sort(SortByID);
+
+    document.write("<br/><b>After Sorting </b> <br/>");   
+    for(var n=0;n<obj.length;n++){
+      document.write(obj[n].ID + ' ' + obj[n].Name + '<br>');
+    }
+
+</script>
+	</head>
+</html>
