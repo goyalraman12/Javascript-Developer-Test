@@ -1,0 +1,70 @@
+<html>
+<title>Machine Test</title>
+ <head>
+ <link href="style.css" rel="stylesheet" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script>
+
+$(document).ready(function(){
+var count =0;
+var images={};
+fetch('https://jsonplaceholder.typicode.com/photos')
+.then(response => response.json())
+.then(data => {
+images=data.url;
+  Object.keys(data).every((key) => {
+	if(count<9){
+		const card = document.createElement('div')
+		card.setAttribute('class', 'card')
+		const del = document.createElement("img")
+		del.src = 'deleteLogo.png'
+		var ele = document.createElement("span");
+		var img = document.createElement("img");
+		img.setAttribute("src", data[key].url);
+		ele.appendChild(img);
+		ele.appendChild(del);
+		card.appendChild(ele);
+		del.onclick=function(){
+			ele.parentNode.removeChild(ele);
+		}
+		var elem=document.getElementById('emoji').appendChild(ele);
+		count++;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+  });
+})
+.catch(err => console.error(err));
+ $("#searchBox").change(function(event){
+    var searchTxt=$("#searchBox").val();
+    $('#emoji').empty();
+    setTimeout(function(){
+     Object.keys(images).forEach((key) => {
+     if(images[key].indexOf(searchTxt)!=-1){
+        var ele = document.createElement("span");
+        var img = document.createElement("img");
+        img.setAttribute("src", images[key]);
+        ele.appendChild(img);
+        var elem=document.getElementById('emoji').appendChild(ele);
+     }
+    
+  });
+   },0);
+ });
+});
+ </script>
+ </head>
+ <body>
+
+<div id="emoji">
+          <ul id="emojiz"></ul>
+          <span style="display:inline;"><img src=""></span>
+          <span style="display:inline; "><img src=""></span>
+          <span style="display:inline;"><img src=""></span>
+          <span style="display:inline; "><img src=""></span>
+</div>
+ </body>
+</html>
